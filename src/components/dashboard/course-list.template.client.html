@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Included a lot of extra spacing, trying to make code readable for grading -->
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <title> LMS Dashboard </title>
+
+    <!-- Bootstrap CSS, custom CSS and favicon for site-->
+    <link href="dashboard-grid.template.client.css" rel="stylesheet"/>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          rel="stylesheet"/>
+
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"/>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+    <link href="../index.template.client.css" rel="stylesheet"/>
+
+    <link href="../static/images/icon.png"
+          rel="icon"
+          type="image/png">
+    <script src="/wbdv_header_footer.js">
+    </script>
+
+
+</head>
+
+<body>
+
+<header>
+    <div id="wbdv_includedHeader"></div>
+</header>
+
+<nav class="navbar bg-primary" >
+
+    <em class="fa fa-bars fa-3x wbdv-field wbdv-hamburger"></em>
+    <span class = "col-sm-3 wbdv-label wbdv-course-manager d-none d-sm-block"
+          id = "nav-heading"><h3 class="text-light">Course Manager</h3></span>
+    <input id="course-search" class="form-inline col-sm-7 wbdv-field wbdv-new-course"
+           placeholder="New Course Title">
+
+    <span class="fa-stack fa-2x">
+        <em class="fa fa-circle fa-stack-2x wbdv-button wbdv-add-course"></em>
+	    <em class="fa fa-plus fa-stack-1x fa-inverse"></em>
+</span>
+
+</nav>
+<div class="wrapper">
+    <table class="table">
+        <thead class ="thead-primary ">
+        <tr>
+            <th scope="col"></th>
+            <th class="wbdv-header wbdv-title" scope="col">Title</th>
+            <th class="wbdv-header wbdv-owner d-none d-sm-table-cell" scope="col">Owned by &nbsp
+                <em class="wbdv-header wbdv-sort fa fa-sort-down"></em></th>
+            <th class="wbdv-header wbdv-last-modified d-none d-sm-table-cell"
+                scope="col">Last modified by Aman Batra</th>
+            <th class="wbdv-header wbdv-last-modified d-none d-sm-table-cell"
+                scope="col"><i class="fa fa-sort-alpha-down"></i>
+                <i class="fa fa-sort"></i></th>
+        </tr>
+        </thead>
+
+        <div class="container">
+            <tbody>
+            <tr>
+                <td><em class="wbdv-row wbdv-icon fa fa-file-text"></em></td>
+                <td>
+                    <a class="wbdv-row wbdv-title"
+                       href="../index.template.client.html">
+                        CS5010 Programming Design Paradigms</a>
+                </td>
+                <td class="wbdv-row wbdv-owner d-none d-sm-table-cell">Aman</td>
+                <td class="wbdv-row wbdv-modified-date d-none d-sm-table-cell">02:00 PM</td>
+                <td>
+                    <em class="wbdv-row wbdv-button wbdv-delete fa fa-times fa-2x"></em>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <em class="wbdv-row wbdv-icon fa fa-file-text"></em>
+                </td>
+                <td>
+                    <a class="wbdv-row wbdv-title"
+                       href="../editor/course-editor.template.client.html">
+                        CS5700 Fundamentals of Computer Networks</a>
+                </td>
+                <td class="wbdv-row wbdv-owner d-none d-sm-table-cell">Aman</td>
+                <td class="wbdv-row wbdv-modified-date d-none d-sm-table-cell">11:00 PM</td>
+                <td>
+                    <em class="wbdv-row wbdv-button wbdv-delete fa fa-times fa-2x">
+                    </em>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <em class="wbdv-row wbdv-icon fa fa-file-text"></em>
+                </td>
+                <td>
+                    <a class="wbdv-row wbdv-title"
+                       href="../editor/course-editor.template.client.html">
+                        CS5800 Algorithms
+                    </a>
+                </td>
+                <td class="wbdv-row wbdv-owner d-none d-sm-table-cell">Batra</td>
+                <td class="wbdv-row wbdv-modified-date d-none d-sm-table-cell">10:00 PM</td>
+                <td>
+                    <em class="wbdv-row wbdv-button wbdv-delete fa fa-times fa-2x"></em>
+                </td>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    Yesterday
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td><em class="wbdv-row wbdv-icon fa fa-file-text"></em></td>
+                <td>
+                    <a class="wbdv-row wbdv-title"
+                       href="../editor/course-editor.template.client.html">
+                        CS5100 Foundations of Artificial Intelligence</a>
+                    <i class='fas fa-user-friends'></i>
+                </td>
+                <td class="wbdv-row wbdv-owner d-none d-sm-table-cell">Batra</td>
+                <td class="wbdv-row wbdv-modified-date d-none d-sm-table-cell">Jan 31, 2021</td>
+                <td>
+                    <em class="wbdv-row wbdv-button wbdv-delete fa fa-times fa-2x"></em>
+                </td>
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>
+                    Previous 7 days
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td><em class="wbdv-row wbdv-icon fa fa-file-text"></em></td>
+                <td>
+                    <a class="wbdv-row wbdv-title"
+                       href="../editor/course-editor.template.client.html">
+                        CS5900 Data Mining</a>
+                    <i class='fas fa-user-friends'></i>
+                </td>
+                <td class="wbdv-row wbdv-owner d-none d-sm-table-cell">Anonymous</td>
+                <td class="wbdv-row wbdv-modified-date d-none d-sm-table-cell">Jan 25, 2021</td>
+                <td>
+                    <em class="wbdv-row wbdv-button wbdv-delete fa fa-times fa-2x"></em>
+                </td>
+            </tr>
+            <tr>
+                <td><em class="wbdv-row wbdv-icon fa fa-file-text"></em></td>
+                <td>
+                    <a class="wbdv-row wbdv-title"
+                       href="../editor/course-editor.template.client.html">
+                        CS4200 Deep Learning</a>
+                </td>
+                <td class="wbdv-row wbdv-owner d-none d-sm-table-cell">Aman</td>
+                <td class="wbdv-row wbdv-modified-date d-none d-sm-table-cell">Jan 24, 2021</td>
+                <td>
+                    <em class="wbdv-row wbdv-button wbdv-delete fa fa-times fa-2x"></em>
+                </td>
+            </tr>
+            </tbody>
+        </div>
+    </table>
+
+</div>
+
+<footer>
+    <div id="wbdv_includedFooter"></div>
+</footer>
+
+
+</body>
+
+</html>

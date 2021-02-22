@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Included a lot of extra spacing, trying to make code readable for grading -->
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <title> LMS Login Page</title>
+
+    <!-- Bootstrap CSS, custom CSS and favicon for site-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          rel="stylesheet"/>
+
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"/>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+    <link href="/index.template.client.css" rel="stylesheet"/>
+
+    <link href="/static/images/icon.png"
+          rel="icon"
+          type="image/png">
+
+    <script src="/wbdv_header_footer.js">
+    </script>
+
+
+</head>
+
+<body>
+<header>
+    <div id="wbdv_includedHeader"></div>
+</header>
+
+    <div class="container-fluid mb-5 margin-add-10">
+
+        <div class="alert alert-danger" role="alert">
+            Your password is incorrect!
+        </div>
+
+        <div class="alert alert-success" role="alert">
+            You have logged in successfully!
+        </div>
+
+        <h1 class="text-center mt-3">Profile</h1>
+        <div class="container pt-3">
+            <div class="row justify-content-sm-center">
+                <div class="col-sm-12 col-md-12">
+                    <div class="card border-info">
+                        <div class="card-header">Check/ Update your details</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form class="form webdv-registration-form">
+                                        <div class="mb-3 row">
+
+                                            <label class="col-sm-2 col-form-label">
+                                                Username
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <input type="text"
+                                                       readonly
+                                                       class="form-control"
+                                                       id="username"
+                                                       value="mnbatra"/>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">
+                                                Password
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <input type="password"
+                                                       class="form-control"
+                                                       id="inputPassword"
+                                                       value="password">
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="phone"
+                                                   class="col-sm-2 col-form-label">
+                                                Phone
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <input type="tel"
+                                                       class="form-control"
+                                                       id="phone"
+                                                       value="(123) 456-7890"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="email"
+                                                   class="col-sm-2 col-form-label">
+                                                Email
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <input type="email"
+                                                       class="form-control"
+                                                       title="Please enter a valid email"
+                                                       value="aman@batra.me"
+                                                       id="email"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="role"
+                                                   class="col-sm-2 col-form-label">
+                                                Role
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <select id="role" class="form-control">
+                                                    <option>Student</option>
+                                                    <option disabled>Faulty</option>
+                                                    <option disabled>Staff</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="dob"
+                                                   class="col-sm-2 col-form-label">
+                                                DOB
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <input type="date"
+                                                       class="form-control"
+                                                       title="Please enter your DOB"
+                                                       value="2021-01-25"
+                                                       id="dob"
+                                                       data-provide="datepicker"/>
+                                            </div>
+                                            <!-- DATEPICKER will not work with safari, bootstrap compatibility issues-->
+                                        </div>
+
+                                        <div class="mb-3 row">
+                                            <label for="dob"
+                                                   class="col-sm-2 col-form-label">
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <a class="btn btn-success btn-block"
+                                                   href="../index.html">
+                                                    Save Details
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <a class="btn btn-danger btn-block"
+                                                   href="../index.html">
+                                                    Cancel
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div id="wbdv_includedFooter"></div>
+    </footer>
+    </body>
+
+</html>
+

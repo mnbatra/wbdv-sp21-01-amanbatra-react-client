@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Included a lot of extra spacing, trying to make code readable for grading -->
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <title> LMS Dashboard </title>
+
+    <!-- Bootstrap CSS, custom CSS and favicon for site-->
+    <link href="dashboard-grid.template.client.css" rel="stylesheet"/>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          rel="stylesheet"/>
+
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.12.1/css/all.css"/>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+
+    <link href="../index.template.client.css" rel="stylesheet"/>
+
+    <link href="../static/images/icon.png"
+          rel="icon"
+          type="image/png">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+            <h3 class="site-title">
+                <a class="navbar-brand" href="#"><img src="../static/images/icon.png" alt="">Learning Management System</a>
+            </h3>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../index.template.client.html">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Course List
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="course-list.template.client.html">Course List</a>
+                            <a class="dropdown-item" href="../dashboard/dashboard-grid.template.client.html">Dashboard Grid</a>
+                            <a class="dropdown-item" href="../dashboard/dashboard-table.template.client.html">Dashboard Table</a>
+                           </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../profile/profile.template.client.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../login/login.template.client.html">Login</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 margin-add-10">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="container">
+        <h1>Dashboard</h1>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Owned by</th>
+                <th>Last modified</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <a href="../editor/course-editor.template.client.html">
+                        <i class="fa fa-file"></i>
+                        CS5610
+                    </a>
+                </td>
+                <td>
+                    me
+                </td>
+                <td>
+                    1/21/2021
+                </td>
+                <td>
+                    <i class="fa fa-trash pull-right"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../editor/course-editor.template.client.html">
+                        <i class="fa fa-file"></i>
+                        CS3200
+                    </a>
+                </td>
+                <td>
+                    me
+                </td>
+                <td>
+                    1/23/2021
+                </td>
+                <td>
+                    <i class="fa fa-trash pull-right"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../editor/course-editor.template.client.html">
+                        <i class="fa fa-file"></i>
+                        CS4550
+                    </a>
+                </td>
+                <td>
+                    me
+                </td>
+                <td>
+                    1/22/2021
+                </td>
+                <td>
+                    <i class="fa fa-trash pull-right"></i>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Yesterday</h3>
+
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <td>
+                    <a href="../editor/course-editor.template.client.html">
+                        <i class="fa fa-file"></i>
+                        CS5610
+                    </a>
+                </td>
+                <td>
+                    me
+                </td>
+                <td>
+                    1/21/2021
+                </td>
+                <td>
+                    <i class="fa fa-trash pull-right"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../editor/course-editor.template.client.html">
+                        <i class="fa fa-file"></i>
+                        CS3200
+                    </a>
+                </td>
+                <td>
+                    me
+                </td>
+                <td>
+                    1/23/2021
+                </td>
+                <td>
+                    <i class="fa fa-trash pull-right"></i>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="../editor/course-editor.template.client.html">
+                        <i class="fa fa-file"></i>
+                        CS4550
+                    </a>
+                </td>
+                <td>
+                    me
+                </td>
+                <td>
+                    1/22/2021
+                </td>
+                <td>
+                    <i class="fa fa-trash pull-right"></i>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <footer>
+        <!-- I HAVE NOT ENABLED THE FOOTER LINKS AS OF NOW, WILL ADD THEM IN UPCOMING ASSIGNMENTS -->
+        <div id="wbdv_includedFooter"></div>
+
+    </footer>
+
+</body>
+
+</html>

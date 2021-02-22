@@ -1,0 +1,45 @@
+#nav-heading{
+    color : white;
+    font-weight: 600;
+    font-size: large;
+    justify-content : right;
+}
+
+#course-search{
+    display: inline;
+}
+
+.wrapper {
+    margin-right: auto;
+    margin-left:  auto;
+
+    max-width: 960px;
+
+    padding-right: 10px;
+    padding-left:  10px;
+}
+
+.fa-bars, .fa-plus-circle{
+    color : #ffffff;
+}
+
+.fa-table{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.fa-plus{
+    color : #ffffff;
+}
+
+.fa-circle{
+    color : #ff0000;
+}
+
+.fa-file{
+    color : #6c6c6c;
+}
+
+.fa-times{
+    color : #3d3d3d;
+}
