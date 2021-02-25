@@ -12,7 +12,7 @@ export default class CourseTable
 
     render() {
         return(
-            <div class="pt-3">
+            <div className="pt-3">
 
                 <table className="table">
                     <thead>
@@ -22,10 +22,10 @@ export default class CourseTable
                         <th className="d-none d-sm-none d-md-none d-lg-table-cell">Last Modified</th>
                         <th>
                     <span className="float-right">
-                    <i className="fas fa-2x fa-folder ml-2"></i>
-                    <i className="fas fa-2x fa-sort-alpha-down ml-2"></i>
+                    <i className="fas fa-2x fa-folder ml-2"/>
+                    <i className="fas fa-2x fa-sort-alpha-down ml-2"/>
                     <Link to="/courses/grid">
-                        <i className="fas fa-2x fa-th ml-2"></i>
+                        <i className="fas fa-2x fa-th ml-2"/>
                     </Link>
                     </span>
                         </th>

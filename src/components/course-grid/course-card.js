@@ -22,20 +22,17 @@ const CourseCard = ({course, deleteCourse, updateCourse, title}) => {
 
     return (
         <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-            <div className="card">
+            <div className="card mb-3">
 
-                <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png"
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/220px-Bootstrap_logo.svg.png"
                      className="card-img-top" alt="..."/>
 
                 <div className="card-body">
-
-
                     {
                         !editing &&
 
                         <h5 className="card-title">{title}</h5>
                     }
-
                     {
                         editing &&
                         <input
@@ -45,15 +42,13 @@ const CourseCard = ({course, deleteCourse, updateCourse, title}) => {
                     }
 
                     <p className="card-text">Some description</p>
-
-                    <img src={``}/>
                     {
                         <Link to="/courses/editor" className="btn btn-primary">
                             {course.title}
                         </Link>
                     }
                     <span className="float-right">
-                        {editing && <i onClick={() => deleteTitle()}
+                        {<i onClick={() => deleteTitle()}
                                        className="fas fa-2x fa-trash my-controls-at-top-right">
 
                         </i>

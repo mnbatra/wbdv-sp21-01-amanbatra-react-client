@@ -2,21 +2,26 @@ import React from 'react'
 import CourseTable from "./course-table/course-table";
 import CourseGrid from "./course-grid/course-grid";
 import {Link, Route} from "react-router-dom";
-import courseService, {findAllCourses, findCourseById,deleteCourse,createCourse} from "../services/course-service";
+import courseService, {findCourseById,findAllCourses,deleteCourse} from "../services/course-service";
 import CourseEditor from "./course-editor/course-editor";
 
 export default class CourseManager
   extends React.Component {
-  state = {
-    courses: []
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            courses: [],
+            value: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
 
-  componentDidMount() {
-    courseService.findAllCourses()
-        .then(courses => this.setState({courses}))
-  }
+componentDidMount = () =>
+    findAllCourses()
+    .then(courses => this.setState({courses}))
 
   updateCourse = (course) => {
+        console.log(course)
     courseService.updateCourse(course._id, course)
         .then(status => {
             this.setState((prevState) => {
@@ -42,20 +47,30 @@ export default class CourseManager
           }))
         })
   }
-
-  addCourse = () => {
+  addCourse = (NewCourse) => {
     const newCourse = {
-      title: "New Course",
-      owner: "me",
-      lastModified: new Date().getMonth() + "/" + new Date().getDate() + "/" + new Date().getFullYear()
+        title: NewCourse,
+        owner: "me",
+        lastModified: new Date().getMonth() + "/" + new Date().getDate() + "/" + new Date().getFullYear()
     }
     courseService.createCourse(newCourse)
-        .then(actualCourse => {
-          this.state.courses.push(actualCourse)
-          this.setState(this.state)
-        })
-  }
+.then(course => this.setState(
+(prevState) => ({
+...prevState,
+    courses: [
+        ...prevState.courses,
+        course
+    ]
+})))
 
+this.setState({value: ""});
+
+
+}
+
+handleChange(event) {
+        this.setState({value: event.target.value});
+    }
 
 render() {
     return(
@@ -63,8 +78,8 @@ render() {
             <Route path="/courses/table">
                 <div className="row">
 
-                    <div class="col-1">
-                        <i className="fa fa-bars fa-2x pull-right"></i>
+                    <div className="col-1">
+                        <i className="fa fa-bars fa-2x pull-right"/>
                     </div>
 
                     <div className="col-3 d-none d-sm-none d-md-none d-lg-block">
@@ -78,24 +93,24 @@ render() {
 
                     <div className="col-1">
                         <i onClick={this.addCourse.bind(this, this.state.value)}
-    className="fa fa-plus fa-2x text-danger"></i>
+    className="fa fa-plus fa-2x text-danger"/>
                         </div>
                 </div>
             </Route>
 
             <Route path="/courses/grid">
-                <div class="row">
-                    <div class="col-1">
-                        <i className="fa fa-bars fa-2x pull-right"></i>
+                <div className="row">
+                    <div className="col-1">
+                        <i className="fa fa-bars fa-2x pull-right"/>
                     </div>
-                    <div class="col-3 d-none d-sm-none d-md-none d-lg-block">
+                    <div className="col-3 d-none d-sm-none d-md-none d-lg-block">
                         <h4>Course Manager</h4>
                     </div>
-                    <div class="col-7">
-                        <input class="form-control bg-muted" type="text" value={this.state.value}
+                    <div className="col-7">
+                        <input className="form-control bg-muted" type="text" value={this.state.value}
                                onChange={this.handleChange} placeholder="New Course Title"/>
                     </div>
-                    <div class="col-1">
+                    <div className="col-1">
                         <i onClick={this.addCourse.bind(this, this.state.value)}
     className="fa fa-plus fa-2x text-danger"/>
                     </div>
@@ -124,7 +139,7 @@ render() {
                 </div>
             </Route>
 
-            <div></div>
+            <div/>
 
             <Route path="/courses/editor"
                    render={(props) => <CourseEditor {...props}/>}>

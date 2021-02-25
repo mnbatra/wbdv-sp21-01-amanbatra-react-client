@@ -34,7 +34,7 @@ const CourseRow = (
                 {
                     !editing &&
                     <Link to="/courses/editor">
-                        <i class="fa fa-file add-padding-right-5px"></i>
+                        <i className="fa fa-file mr-2"/>
                         {title}
                     </Link>
                 }
@@ -49,7 +49,7 @@ const CourseRow = (
             <td className="d-none d-sm-table-cell">{owner}</td>
             <td className="d-none d-sm-none d-md-none d-lg-table-cell">{lastModified}</td>
             <td>
-            <span class="float-right">
+            <span className="float-right">
                 {editing && <i onClick={() => saveTitle()}
                                className="fa fa-2x fa-check">
 
