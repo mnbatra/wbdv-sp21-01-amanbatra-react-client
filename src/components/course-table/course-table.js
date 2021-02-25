@@ -1,5 +1,5 @@
 import React from 'react'
-import CourseRow from "../course-row";
+import CourseRow from "./course-row";
 import {Link} from "react-router-dom";
 
 export default class CourseTable extends
@@ -19,10 +19,6 @@ export default class CourseTable extends
         <table className="table">
             <thead></thead>
             <tbody>
-              {/*<CourseRow title="CS5610" owner="me"/>*/}
-              {/*<CourseRow title="CS3200" owner="you"/>*/}
-              {/*<CourseRow title="CS5200" owner="him"/>*/}
-              {/*<CourseRow title="CS4550" owner="she"/>*/}
               {
                 this.props.courses.map(course =>
                   <CourseRow

@@ -2,7 +2,7 @@ import React from 'react'
 import CourseTable from "./course-table/course-table";
 import CourseGrid from "./course-grid/course-grid";
 import {Link, Route} from "react-router-dom";
-import courseService, {findAllCourses, deleteCourse} from "../services/course-service";
+import courseService, {findAllCourses, findCourseById,deleteCourse,createCourse} from "../services/course-service";
 
 export default class CourseManager
   extends React.Component {
@@ -66,24 +66,19 @@ export default class CourseManager
           <Link to="/">
               <i className="fas fa-2x fa-home float-right"></i>
           </Link>
-          <h1>Course Manager</h1>
         <button onClick={this.addCourse}>
           Add Course
         </button>
 
-        {/*<Route path="/courses/table" component={CourseTable}/>*/}
-        <Route path="/courses/table" exact={true} >
+          <Route path="/courses/table" exact={true} >
           <CourseTable
               updateCourse={this.updateCourse}
               deleteCourse={this.deleteCourse}
               courses={this.state.courses}/>
         </Route>
-        {/*<Route path="/courses/grid" component={CourseGrid}/>*/}
         <Route path="/courses/grid" exact={true} >
           <CourseGrid courses={this.state.courses}/>
         </Route>
-        {/*<CourseTable courses={this.state.courses}/>*/}
-        {/*<CourseGrid courses={this.state.courses}/>*/}
       </div>
     )
   }
