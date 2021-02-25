@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 
 export default () =>
     <>
-        <h1></h1>
         <div className="list-group">
             <Link to="/courses/table" className="list-group-item">
                 Courses Table

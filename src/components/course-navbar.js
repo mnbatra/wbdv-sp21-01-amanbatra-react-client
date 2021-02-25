@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export default class CourseHeader extends React.Component {
 
@@ -39,6 +40,9 @@ render() {
                     <form className="form-inline my-2 my-lg-0 margin-add-10">
                         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
                             <button className="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+                        <Link to="/">
+                            <i className="fas fa-2x fa-home float-right ml-2 text-light"></i>
+                        </Link>
                     </form>
                 </div>
             </nav>)

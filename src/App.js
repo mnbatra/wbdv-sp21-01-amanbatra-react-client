@@ -10,7 +10,7 @@ import CourseEditor from "./components/course-editor/course-editor";
 function App() {
   return (
       <BrowserRouter>
-          <div className="container-fluid">
+          <div className="container-flex">
               <CourseHeader/>
               <Route path="/" exact={true}>
               <Home/>

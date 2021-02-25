@@ -3,6 +3,7 @@ import CourseTable from "./course-table/course-table";
 import CourseGrid from "./course-grid/course-grid";
 import {Link, Route} from "react-router-dom";
 import courseService, {findAllCourses, findCourseById,deleteCourse,createCourse} from "../services/course-service";
+import CourseEditor from "./course-editor/course-editor";
 
 export default class CourseManager
   extends React.Component {
@@ -13,7 +14,6 @@ export default class CourseManager
   componentDidMount() {
     courseService.findAllCourses()
         .then(courses => this.setState({courses}))
-        // .then(courses => this.setState({courses: courses}))
   }
 
   updateCourse = (course) => {
@@ -34,24 +34,20 @@ export default class CourseManager
   }
 
   deleteCourse = (course) => {
-    // alert("delete course " + course._id)
     courseService.deleteCourse(course._id)
         .then(status => {
-          // this.setState({
-          //   courses: this.state.courses.filter(c => c._id !== course._id)
-          // })
           this.setState((prevState) => ({
-            courses: prevState.courses.filter(c => c._id !== course._id)
+            courses: prevState.courses.filter
+            (c => c._id !== course._id)
           }))
         })
   }
 
   addCourse = () => {
-    // alert('add course')
     const newCourse = {
       title: "New Course",
       owner: "me",
-      lastModified: "2/10/2021"
+      lastModified: new Date().getMonth() + "/" + new Date().getDate() + "/" + new Date().getFullYear()
     }
     courseService.createCourse(newCourse)
         .then(actualCourse => {
@@ -60,27 +56,80 @@ export default class CourseManager
         })
   }
 
-  render() {
-    return(
-      <div>
-          <Link to="/">
-              <i className="fas fa-2x fa-home float-right"></i>
-          </Link>
-        <button onClick={this.addCourse}>
-          Add Course
-        </button>
 
-          <Route path="/courses/table" exact={true} >
-          <CourseTable
-              updateCourse={this.updateCourse}
-              deleteCourse={this.deleteCourse}
-              courses={this.state.courses}/>
-        </Route>
-        <Route path="/courses/grid" exact={true} >
-          <CourseGrid courses={this.state.courses}/>
-        </Route>
-      </div>
+render() {
+    return(
+        <div className="container pt-3">
+            <Route path="/courses/table">
+                <div className="row">
+
+                    <div class="col-1">
+                        <i className="fa fa-bars fa-2x pull-right"></i>
+                    </div>
+
+                    <div className="col-3 d-none d-sm-none d-md-none d-lg-block">
+                        <h4>Course Manager</h4>
+                    </div>
+
+                    <div className="col-7">
+                        <input className="form-control bg-muted" type="text" value={this.state.value}
+                               onChange={this.handleChange} placeholder="New Course Title"/>
+                    </div>
+
+                    <div className="col-1">
+                        <i onClick={this.addCourse.bind(this, this.state.value)}
+    className="fa fa-plus fa-2x text-danger"></i>
+                        </div>
+                </div>
+            </Route>
+
+            <Route path="/courses/grid">
+                <div class="row">
+                    <div class="col-1">
+                        <i className="fa fa-bars fa-2x pull-right"></i>
+                    </div>
+                    <div class="col-3 d-none d-sm-none d-md-none d-lg-block">
+                        <h4>Course Manager</h4>
+                    </div>
+                    <div class="col-7">
+                        <input class="form-control bg-muted" type="text" value={this.state.value}
+                               onChange={this.handleChange} placeholder="New Course Title"/>
+                    </div>
+                    <div class="col-1">
+                        <i onClick={this.addCourse.bind(this, this.state.value)}
+    className="fa fa-plus fa-2x text-danger"/>
+                    </div>
+                </div>
+            </Route>
+
+            <Route path="/courses/table">
+                <CourseTable
+                    updateCourse={this.updateCourse}
+                    deleteCourse={this.deleteCourse}
+                    courses={this.state.courses}/>
+                <div className="fixed-bottom">
+                    <i onClick={this.addCourse.bind(this, this.state.value)}
+    className="fa fa-plus float-right fa-2x text-danger mb-5 mr-5"/>
+                </div>
+            </Route>
+
+            <Route path="/courses/grid">
+                <CourseGrid
+                    updateCourse={this.updateCourse}
+                    deleteCourse={this.deleteCourse}
+                    courses={this.state.courses}/>
+                <div className="fixed-bottom">
+                    <i onClick={this.addCourse.bind(this, this.state.value)}
+    className="fa fa-plus fa-2x float-right text-danger mb-5 mr-5"/>
+                </div>
+            </Route>
+
+            <div></div>
+
+            <Route path="/courses/editor"
+                   render={(props) => <CourseEditor {...props}/>}>
+            </Route>
+        </div>
     )
-  }
 }
-// export default CourseManager
+}

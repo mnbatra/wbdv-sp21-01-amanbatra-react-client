@@ -1,64 +1,72 @@
 import React, {useState} from 'react'
 import {Link} from "react-router-dom";
-import CourseGridComponent from "../../testing/CourseGridComponent";
-import CourseHeader from "../course-navbar";
 
 const CourseRow = (
-  {
-    course,
-    lastModified="1/1/2021",
-    owner="who knows?",
-      deleteCourse,
-      updateCourse
-  }) => {
+    {
+        deleteCourse,
+        updateCourse,
+        course,
+        lastModified,
+        title,
+        owner
+    }) => {
     const [editing, setEditing] = useState(false)
-    const [title, setTitle] = useState(course.title)
+    const [newTitle, setNewTitle] = useState(title)
 
-    const saveCourse = () => {
+    const saveTitle = () => {
         setEditing(false)
         const newCourse = {
             ...course,
-            title: title
+            title: newTitle
         }
         updateCourse(newCourse)
     }
 
-    return(
+    const deleteTitle = () => {
+        setEditing(false)
+
+        deleteCourse(course)
+    }
+
+    return (
         <tr>
-        <td>
-            {
-                !editing &&
-                <Link to="/editor">
-                    {course.title}
-                </Link>
-            }
-            {
-                editing &&
-                <input
-                    className="form-control"
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}/>
-            }
-        </td>
-        <td>{course.owner}</td>
-        <td>{course.lastModified}</td>
-        <td>
-            <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>
-            {/*<i onClick={() => setEditing((prevEditing) => !prevEditing)} className="fas fa-edit"></i>*/}
+            <td>
+                {
+                    !editing &&
+                    <Link to="/courses/editor">
+                        <i class="fa fa-file add-padding-right-5px"></i>
+                        {title}
+                    </Link>
+                }
+                {
+                    editing &&
+                    <input
+                        onChange={(event) => setNewTitle(event.target.value)}
+                        value={newTitle}
+                        className="form-control"/>
+                }
+            </td>
+            <td className="d-none d-sm-table-cell">{owner}</td>
+            <td className="d-none d-sm-none d-md-none d-lg-table-cell">{lastModified}</td>
+            <td>
+            <span class="float-right">
+                {editing && <i onClick={() => saveTitle()}
+                               className="fa fa-2x fa-check">
 
-            {
-                editing &&
-                <i onClick={() => saveCourse()} className="fas fa-check"></i>
-            }
+                </i>
+                }
+                {!editing && <i onClick={() => setEditing(true)}
+                                className="fa fa-2x fa-edit">
 
-            {
-                !editing &&
-                <i onClick={() => setEditing(true)} className="fas fa-edit"></i>
-            }
+                </i>
+                }
+                {<i onClick={() => deleteTitle()}
+                    className="fa fa-2x fa-trash">
+                </i>}
 
-
-        </td>
-    </tr>)
+            </span>
+            </td>
+        </tr>
+    )
 }
-
 export default CourseRow
