@@ -40,3 +40,7 @@
 .list-group-item.active a{
   color: #fff !important;
 }
+
+.nav-tabs .nav-link{
+  color:white;
+}
