@@ -13,7 +13,7 @@ const moduleReducer = (state = initialState, action) => {
       }
       return nextState1
 
-    case "FIND_MODULE":
+    case "FIND_MODULES_FOR_COURSE":
       return {
         ...state,
         modules: action.modules

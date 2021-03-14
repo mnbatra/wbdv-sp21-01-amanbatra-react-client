@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import EditableItem from "../editable-item";
 import {useParams} from "react-router-dom";
 import moduleService from "../../services/module-service"
+import '../../App.css';
 
 const ModuleList = (
     {
@@ -20,7 +21,7 @@ const ModuleList = (
     return(
         <div className="p-2 mb-3 bg-dark text-white">
             <h3>Modules</h3>
-            <ul className="list-group"  >
+            <ul className="list-group">
                 {myModules.map(module =>
                     <li className= {`list-group-item ${module._id === moduleId ? 'active': ""}`} key={`${module._id}`}>
                         <EditableItem to={`/courses/${layout}/editor/${courseId}/${module._id}`}
@@ -65,7 +66,7 @@ const dtpm = (dispatch) => {
         findModulesForCourse: (courseId) => {
             moduleService.findModulesForCourse(courseId)
                 .then(theModules => dispatch({
-                    type: "FIND_MODULE",
+                    type: "FIND_MODULES_FOR_COURSE",
                     modules: theModules})
                 )
         }

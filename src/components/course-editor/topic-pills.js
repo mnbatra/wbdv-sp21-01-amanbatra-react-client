@@ -131,12 +131,12 @@ const dtpm = (dispatch) => {
         findTopicsForLesson: (lessonId) => {
             topicService.findTopicsForLesson(lessonId)
                 .then(topics => dispatch({
-                    type: "FIND_TOPIC",
+                    type: "FIND_TOPIC_FOR_LESSON",
                     topics : topics})
                 )
         },
         setTopicToEmpty: (topicId) => dispatch({
-            type: "CLEAR_ALL_TOPICS"
+            type: "CLEAN_TOPIC"
         })
 
 

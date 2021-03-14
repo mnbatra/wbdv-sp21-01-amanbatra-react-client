@@ -53,7 +53,7 @@ const dtpm =(dispatch) => {
     return {
         findLessonsForModule: (moduleId) => {
             lessonService.findLessonsForModule(moduleId).then(lessons => dispatch({
-                type: "FIND_LESSON",
+                type: "FIND_LESSONS_FOR_MODULE",
                 lessons: lessons
             }))
         },
@@ -86,7 +86,7 @@ const dtpm =(dispatch) => {
         },
         setLessonsToEmpty: (lessonId) => {
             dispatch({
-                type: "CLEAR_ALL_TOPICS"
+                type: "CLEAR_LESSON"
             })
         }
     }

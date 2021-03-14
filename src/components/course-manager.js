@@ -74,7 +74,7 @@ handleChange(event) {
 
 render() {
     return(
-        <div className="container pt-3">
+        <div className="container-fluid p-4">
             <Route path="/courses/table" exact>
                 <div className="row">
 

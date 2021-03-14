@@ -14,7 +14,7 @@ const lessonReducer = (state=initialState, action) => {
           action.lesson,
         ]
       }
-    case "FIND_LESSON":
+    case "FIND_LESSONS_FOR_MODULE":
       return {
         ...state,
         lessons: action.lessons
@@ -42,7 +42,7 @@ const lessonReducer = (state=initialState, action) => {
         })
       }
       return nextState
-    case "CLEAN_LESSON":
+    case "CLEAR_LESSON":
       return {
         ...state,
         lessons: []

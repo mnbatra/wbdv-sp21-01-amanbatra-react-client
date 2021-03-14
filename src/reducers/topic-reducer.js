@@ -10,7 +10,7 @@ const topicReducer = (state = initialState, action) => {
         ...state,
         topics: [...state.topics, action.topic]
       }
-    case "FIND_TOPIC":
+    case "FIND_TOPIC_FOR_LESSON":
       return {
         ...state,
         topics: action.topics
@@ -37,7 +37,7 @@ const topicReducer = (state = initialState, action) => {
           }
         })
       }
-    case "CLEAR_ALL_TOPICS":
+    case "CLEAN_TOPIC":
       return {
         ...state,
         topics: []

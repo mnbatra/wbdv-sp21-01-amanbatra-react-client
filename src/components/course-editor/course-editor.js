@@ -31,9 +31,9 @@ const CourseEditor = ({history}) => {
     console.log("edit layout")
     return(
         <Provider store={store}>
-            <div className="container pt-3 bg-dark p-3">
+            <div className="container-fluid pt-3 bg-dark p-3">
                 <div>
-                    <h2 className="text-white">
+                    <h2 className={"text-white"}>
                         <a href={`/courses/${layout}`}  className="fa fa-arrow-left"> Back to Courses &nbsp;</a>
                         Selected Course - {courseName.title}
                     </h2>

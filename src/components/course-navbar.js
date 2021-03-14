@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export default class CourseHeader extends React.Component {
     state = {
-        title: "New Course"
+        title: "Navbar"
     }
 
 render() {
@@ -22,7 +22,7 @@ render() {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
-                        <li className="nav-item active">
+                        <li className="nav-item">
                             <a className="nav-link" href="/">Home<span
                                 className="sr-only">(current)</span></a>
                         </li>
