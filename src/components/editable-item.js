@@ -17,10 +17,10 @@ const EditableItem = (
         <>
             {!editing &&
             <>
-                <Link className={`nav-link ${active?'active':''}`} to={to}>
+                <Link className={`border-white nav-link ${active?'active':''}`} to={to}>
                     {item.title}
                 </Link>
-                <i onClick={() => setEditing(true)} className="fas fa-edit float-right text-dark"/>
+                <i onClick={() => setEditing(true)} className="fas fa-2x fa-edit float-right text-info p-1"/>
             </>
             }
             {editing &&
@@ -36,11 +36,11 @@ const EditableItem = (
                 <i onClick={() => {
                     setEditing(false)
                     updateItem(cachedItem)
-                }} className="fas fa-check text-success"/>
+                }} className="fas fa-check text-success m-1"/>
                 <i onClick={() => {
                     deleteItem(item)
                     setEditing(false)
-                }} className="fas fa-times text-danger"/>
+                }} className="fas fa-trash text-danger m-1"/>
             </>
             }
         </>
