@@ -41,7 +41,7 @@ const lessonReducer = (state=initialState, action) => {
           }
         })
       }
-      return newState
+      return nextState
     case "CLEAN_LESSON":
       return {
         ...state,

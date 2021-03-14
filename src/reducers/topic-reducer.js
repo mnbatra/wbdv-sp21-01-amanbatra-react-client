@@ -47,4 +47,4 @@ const topicReducer = (state = initialState, action) => {
   }
 }
 
-export default topicReducer
+export default topicReducer;

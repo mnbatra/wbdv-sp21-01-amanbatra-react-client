@@ -43,7 +43,7 @@ const CourseCard = ({course, deleteCourse, updateCourse, title}) => {
 
                     <p className="card-text">Some description</p>
                     {
-                        <Link to="/courses/editor" className="btn btn-primary">
+                        <Link to={`/courses/grid/editor/${course._id}`} className="btn btn-primary">
                             {course.title}
                         </Link>
                     }

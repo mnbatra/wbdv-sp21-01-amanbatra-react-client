@@ -75,7 +75,7 @@ handleChange(event) {
 render() {
     return(
         <div className="container pt-3">
-            <Route path="/courses/table">
+            <Route path="/courses/table" exact>
                 <div className="row">
 
                     <div className="col-1">
@@ -98,7 +98,7 @@ render() {
                 </div>
             </Route>
 
-            <Route path="/courses/grid">
+            <Route path="/courses/grid" exact>
                 <div className="row">
                     <div className="col-1">
                         <i className="fa fa-bars fa-2x pull-right"/>
@@ -117,7 +117,7 @@ render() {
                 </div>
             </Route>
 
-            <Route path="/courses/table">
+            <Route path="/courses/table" exact>
                 <CourseTable
                     updateCourse={this.updateCourse}
                     deleteCourse={this.deleteCourse}
@@ -128,7 +128,7 @@ render() {
                 </div>
             </Route>
 
-            <Route path="/courses/grid">
+            <Route path="/courses/grid" exact>
                 <CourseGrid
                     updateCourse={this.updateCourse}
                     deleteCourse={this.deleteCourse}
@@ -141,9 +141,20 @@ render() {
 
             <div/>
 
-            <Route path="/courses/editor"
+            <Route path={["/courses/:layout/editor/:courseId/:moduleId/:lessonId/:topicId","/courses/:layout/editor/:courseId/:moduleId/:lessonId","/courses/:layout/editor/:courseId/:moduleId","/courses/:layout/editor/:courseId"]}
                    render={(props) => <CourseEditor {...props}/>}>
             </Route>
+            <Route path="/courses/table" exact><a href="#">
+                <i onClick={this.addCourse}
+                    className="btn btn-success"
+                    style={{position: "fixed", bottom: 0, right: 0}}/>
+            </a></Route>
+            <Route path="/courses/grid" exact><a href="#">
+                <i onClick={this.addCourse}
+                    className="btn btn-success"
+                    style={{position: "fixed", bottom: 0, right: 0}}/>
+            </a></Route>
+
         </div>
     )
 }

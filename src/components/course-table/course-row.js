@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 
 const CourseRow = (
@@ -33,7 +33,7 @@ const CourseRow = (
             <td>
                 {
                     !editing &&
-                    <Link to="/courses/editor">
+                    <Link to={`/courses/table/editor/${course._id}`}>
                         <i className="fa fa-file mr-2"/>
                         {title}
                     </Link>
