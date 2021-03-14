@@ -1,7 +1,16 @@
-import React from 'react'
-import {Link} from "react-router-dom";
+import React, {useEffect,useState} from 'react'
+import {BrowserRouter,useParams,Link,Route} from "react-router-dom";
+import moduleReducer from "../../reducers/module-reducer";
+import topicReducer from "../../reducers/topic-reducer";
+import lessonReducer from "../../reducers/lesson-reducer";
+import {createStore,combineReducers} from "redux";
+import courseService from "../../services/course-service"
+import {Provider} from "react-redux";
+
+const store = createStore(moduleReducer)
 
 const CourseEditor = ({history}) =>
+    <Provider store = {store}>
   <h1>
       <Link to="/courses/table">
         <i className="fas fa-arrow-left"></i>
@@ -117,6 +126,6 @@ const CourseEditor = ({history}) =>
           </div>
       </div>
 
-  </h1>
+  </h1></Provider>
 
 export default CourseEditor
