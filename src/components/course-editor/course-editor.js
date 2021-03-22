@@ -6,15 +6,19 @@ import topicReducer from "../../reducers/topic-reducer";
 import TopicPills from "./topic-pills";
 import lessonReducer from "../../reducers/lesson-reducer";
 import LessonTabs from "./lesson-tabs";
+import widgetReducer from "../../reducers/widget-reducer";
+import WidgetList from "../widgets/widget-list";
 import {createStore,combineReducers} from "redux";
 import courseService from "../../services/course-service"
 import {Provider} from "react-redux";
+import "../../App.css";
 
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
     lessonReducer: lessonReducer,
-    topicReducer: topicReducer
+    topicReducer: topicReducer,
+    widgetReducer: widgetReducer
 })
 
 const store = createStore(reducer)
@@ -46,6 +50,8 @@ const CourseEditor = ({history}) => {
                     <div className='col-9'>
                         <LessonTabs/>
                         <TopicPills/>
+                        <WidgetList/>
+
                     </div>
                 </div>
             </div>

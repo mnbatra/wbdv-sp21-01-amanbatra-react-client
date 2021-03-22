@@ -44,3 +44,24 @@
 .nav-tabs .nav-link{
   color:white;
 }
+
+
+.widget-list {
+  margin-right: 1rem;
+}
+
+.editor-widget-list-btn {
+  background: green;
+  border: none;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.widget-list-add {
+  color: #223661;
+}
+
+.widget-list .list-group-item, .widgetlist-edit-content {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

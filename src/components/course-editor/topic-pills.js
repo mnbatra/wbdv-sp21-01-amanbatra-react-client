@@ -51,45 +51,16 @@ const TopicPills = ({
             </div>
 
             <form className="form-inline my-3">
-                <span className="font-weight-bold h3">Heading Widget</span>
+                <span className="font-weight-bold h3">Widgets</span>
                 <div className="form-group ml-auto">
                     <select className="form-control" aria-label="widget-dropdown">
                         <option>Heading</option>
-                        <option>YouTube</option>
-                        <option>Slides</option>
-                        <option>Image</option>
-                        <option>List</option>
+                        <option>Paragraph</option>
                     </select>
                 </div>
                 <button type="submit" className="btn btn-warning ml-2"><i className="fa fa-arrow-up"/></button>
                 <button type="submit" className="btn btn-warning ml-2"><i className="fa fa-arrow-down"/></button>
-                <button type="submit" className="btn btn-danger ml-2"><i className="fa fa-trash"/></button>
             </form>
-
-            <form>
-                <div className="form-row">
-
-                    <div className="form-group col-sm-6">
-                        <input type="text" className="form-control" placeholder="Heading text"
-                               aria-label="heading-text"/>
-                    </div>
-
-                    <div className="form-group col-sm-6">
-                        <select className="form-control" id="widget-type" aria-label="widget-type">
-                            <option>Heading 1</option>
-                            <option>Heading 2</option>
-                            <option>Heading 3</option>
-                        </select>
-                    </div>
-                </div>
-
-                <input className="form-control" type="text" placeholder="Type widget name"
-                       aria-label="widget-name"/>
-
-            </form>
-
-            <p className="font-weight-bold h4 mt-4">Preview</p>
-            <p> Heading Text</p>
         </div>
 
     )
