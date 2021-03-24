@@ -30,11 +30,7 @@ const topicReducer = (state = initialState, action) => {
       return {
         ...state,
         topics: state.topics.filter(t => {
-          if (t._id === action.topic._id) {
-            return false
-          } else {
-            return true
-          }
+          return t._id !== action.topic._id;
         })
       }
     case "CLEAN_TOPIC":

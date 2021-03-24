@@ -13,12 +13,14 @@ function App() {
               <CourseHeader/>
               <Route path="/" exact={true}>
               <Home/>
-          </Route>
+              </Route>
           <Route path="/courses">
               <CourseManager/>
           </Route>
-          </div>
          <Route path="/editor" exact={true} render={(props) => <CourseEditor {...props}/>}/>
+          </div>
+
+
       </BrowserRouter>
   );
 }

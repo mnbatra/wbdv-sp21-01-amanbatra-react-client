@@ -3,7 +3,6 @@ import React from "react";
 const WIDGET_URL = "https://amanbatra-java-server.herokuapp.com/api/widgets"
 const TOPIC_URL = "https://amanbatra-java-server.herokuapp.com/api/topics"
 
-
 const findAllWidgets = () =>
     fetch(`${WIDGET_URL}`)
         .then(response => response.json())

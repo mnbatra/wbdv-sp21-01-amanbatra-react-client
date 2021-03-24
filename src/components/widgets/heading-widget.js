@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
+import {BrowserRouter, useParams, Link, Route} from "react-router-dom";
 
 const HeadingWidget = ({widget, editing}) => {
     const [cachedWidget, setCachedWidget] = useState(widget)
+    const [isEditing,setIsEditing] = useState(false)
     return (
         <>
-            {
-                editing &&
+            { editing &&
                 <>
                     <select
                         onChange={(e) => {

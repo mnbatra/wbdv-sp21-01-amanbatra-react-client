@@ -141,7 +141,7 @@ render() {
 
             <div/>
 
-            <Route path={["/courses/:layout/editor/:courseId/:moduleId/:lessonId/:topicId","/courses/:layout/editor/:courseId/:moduleId/:lessonId","/courses/:layout/editor/:courseId/:moduleId","/courses/:layout/editor/:courseId"]}
+            <Route path={["/courses/:layout/editor/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId/widgets","/courses/:layout/editor/:courseId/:moduleId/:lessonId/:topicId","/courses/:layout/editor/:courseId/:moduleId/:lessonId","/courses/:layout/editor/:courseId/:moduleId","/courses/:layout/editor/:courseId"]}
                    render={(props) => <CourseEditor {...props}/>}>
             </Route>
             <Route path="/courses/table" exact><a href="#">

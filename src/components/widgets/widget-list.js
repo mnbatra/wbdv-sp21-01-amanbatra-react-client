@@ -4,29 +4,37 @@ import {connect} from "react-redux";
 import ParagraphWidget from "./paragraph-widget";
 import HeadingWidget from "./heading-widget";
 import widgetService from "../../services/widget-service"
-
-
+import topicReducer from "../../reducers/topic-reducer";
 
 const WidgetList = ({
                         widgets = [],
+                        setWidgetToEmpty,
                         findWidgetsForTopic = (topicId) => console.log(topicId),
                         findAllWidgets,
                         createWidgetForTopic,
                         updateWidget,
                         deleteWidget
                     }) => {
-    const {moduleId, lessonId, topicId} = useParams()
+    const  {moduleId, lessonId, topicId} = useParams()
+    const [editingWidget, setEditingWidget] = useState({})
 
     useEffect(() => {
-        findWidgetsForTopic(topicId)
-    }, [moduleId, lessonId, topicId])
+        if (topicId != "undefined" && typeof topicId != "undefined"
+            && moduleId != "undefined" && typeof moduleId != "undefined"
+            && lessonId != "undefined" && typeof lessonId != "undefined"){
+            findWidgetsForTopic(topicId)
+        }
+        else {
+            setWidgetToEmpty();
+        }
 
-    const [editingWidget, setEditingWidget] = useState({})
+    }, [topicId,lessonId, moduleId])
+
 
     return (
         <div className={"widget-list"}>
             <button
-                onClick={() => createWidgetForTopic(topicId)}
+                onClick={() => createWidgetForTopic(topicId,lessonId,moduleId)}
                 className="widget-list-add editor-widget-list-btn fas fa-plus fa-2x float-right"
             />
             <ul className="list-group">
@@ -80,15 +88,24 @@ const stpm = (state) => {
 
 const dtpm = (dispatch) => {
     return {
+        setWidgetToEmpty:() => dispatch({
+            type: "CLEAN_WIDGET"
+        }),
         findWidgetsForTopic: (topicId) => {
-            widgetService.findWidgetsForTopic(topicId)
-                .then(fetchedWidgets => dispatch({
-                    type: "FIND_WIDGETS_FOR_TOPIC",
-                    widgets: fetchedWidgets
-                }))
+            widgetService.findWidgetsForTopic(topicId).then(
+
+                widgets => {
+                    console.log(widgets);
+                    console.log("1");
+                    dispatch({
+                        type:"FIND_WIDGETS_FOR_TOPIC",
+                        widgets: widgets
+                    })
+                }
+            )
         },
         findAllWidgets: () =>
-            widgetService.findAllWidgets()
+                widgetService.findAllWidgets()
                 .then(fetchedWidgets => dispatch({
                     type: "FIND_ALL_WIDGETS",
                     widgets: fetchedWidgets
@@ -99,17 +116,25 @@ const dtpm = (dispatch) => {
                     type: "FIND_WIDGET",
                     widget: fetchedWidget
                 })),
-        createWidgetForTopic: (topicId) => {
-            widgetService.createWidget(topicId, {
-                type: "HEADING",
-                size: 1,
-                text: "New Widget"
-            })
-                .then(createdWidget => dispatch({
-                    type: "CREATE_WIDGET",
-                    widget: createdWidget
-                }))
+
+        createWidgetForTopic: (topicId, lessonId, moduleId) => {
+            if (!(lessonId != "undefined" &&
+                typeof lessonId != "undefined" && moduleId != "undefined" && typeof moduleId != "undefined" && topicId != "undefined" &&
+                typeof topicId != "undefined") ) {
+                alert("Invalid operation. You have to select topic first!")
+            } else {
+                widgetService.createWidget(topicId, {
+                    type: "HEADING",
+                    size: 1,
+                    text: "New Widget"
+                })
+                    .then(createdWidget => dispatch({
+                        type: "CREATE_WIDGET",
+                        widget: createdWidget
+                    }))
+            }
         },
+
         updateWidget: (widget) => {
             console.log("logging from update widget")
             console.log(widget.id)
