@@ -19,8 +19,6 @@ function App() {
           </Route>
          <Route path="/editor" exact={true} render={(props) => <CourseEditor {...props}/>}/>
           </div>
-
-
       </BrowserRouter>
   );
 }
