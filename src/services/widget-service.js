@@ -1,24 +1,21 @@
 import React from "react";
 
-const WIDGET_URL = "https://amanbatra-java-server.herokuapp.com/api/widgets"
-const TOPIC_URL = "https://amanbatra-java-server.herokuapp.com/api/topics"
+const TOPIC_URL = "https://wbdv-generic-server.herokuapp.com/api/mnbatra/topics";
+//const LESSON_URL = "https://wbdv-generic-server.herokuapp.com/api/mnbatra/lessons";
+const WIDGET_URL = "http://ec2-3-133-235-23.us-east-2.compute.amazonaws.com:8080/api/widgets/"; //my personal server for mysql on aws
 
-const findAllWidgets = () =>
-    fetch(`${WIDGET_URL}`)
-        .then(response => response.json())
+export const findAllWidgets = () => {}
 
 
-const findWidgetsForTopic = (topicId) =>
+export const findWidgetsForTopic = (topicId) =>
     fetch(`${TOPIC_URL}/${topicId}/widgets`)
         .then(response => response.json())
 
 
-const findWidgetById = (widgetId) =>
-    fetch(`$${WIDGET_URL}/{widgetId}`)
-        .then(response => response.json())
+export const findWidgetById = (widgetId) => {}
 
 
-const createWidget = (topicId, widget) =>
+export const createWidget = (topicId, widget) =>
     fetch(`${TOPIC_URL}/${topicId}/widgets`, {
         method: "POST",
         body: JSON.stringify(widget),
@@ -29,7 +26,7 @@ const createWidget = (topicId, widget) =>
         .then(response => response.json())
 
 
-const updateWidget = (widgetId, widget) =>
+export const updateWidget = (widgetId, widget) =>
     fetch(`${WIDGET_URL}/${widgetId}`, {
         method: "PUT",
         body: JSON.stringify(widget),
@@ -39,7 +36,7 @@ const updateWidget = (widgetId, widget) =>
     })
         .then(status => status.json())
 
-const deleteWidget = (widgetId) =>
+export const deleteWidget = (widgetId) =>
     fetch(`${WIDGET_URL}/${widgetId}`, {
         method: "DELETE"
     })

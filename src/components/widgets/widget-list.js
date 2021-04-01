@@ -5,6 +5,9 @@ import ParagraphWidget from "./paragraph-widget";
 import HeadingWidget from "./heading-widget";
 import widgetService from "../../services/widget-service"
 import topicReducer from "../../reducers/topic-reducer";
+import ListWidget from "./list-widget";
+import ImageWidget from "./image-widget";
+
 
 const WidgetList = ({
                         widgets = [],
@@ -69,6 +72,18 @@ const WidgetList = ({
                             {
                                 widget.type === "PARAGRAPH" &&
                                 <ParagraphWidget
+                                    editing={editingWidget.id === widget.id}
+                                    widget={widget}/>
+                            }
+                            {
+                                widget.type === "LIST" &&
+                                <ListWidget
+                                    editing={editingWidget.id === widget.id}
+                                    widget={widget}/>
+                            }
+                            {
+                                widget.type === "IMAGE" &&
+                                <ImageWidget
                                     editing={editingWidget.id === widget.id}
                                     widget={widget}/>
                             }

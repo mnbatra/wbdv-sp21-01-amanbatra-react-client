@@ -21,6 +21,8 @@ const ParagraphWidget = ({widget, editing}) => {
                         className="form-control">
                         <option value={"HEADING"}>Heading</option>
                         <option value={"PARAGRAPH"}>Paragraph</option>
+                        <option value={"LIST"}>List</option>
+                        <option value={"IMAGE"}>Image</option>
                     </select>
                     <textarea
                         onChange={(e) => {

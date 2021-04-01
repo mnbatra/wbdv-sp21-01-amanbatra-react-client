@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
-import {BrowserRouter, useParams, Link, Route} from "react-router-dom";
 
 const HeadingWidget = ({widget, editing}) => {
     const [cachedWidget, setCachedWidget] = useState(widget)
-    const [isEditing,setIsEditing] = useState(false)
     return (
         <>
             { editing &&
@@ -20,6 +18,8 @@ const HeadingWidget = ({widget, editing}) => {
                         className="form-control">
                         <option value={"HEADING"}>Heading</option>
                         <option value={"PARAGRAPH"}>Paragraph</option>
+                        <option value={"LIST"}>List</option>
+                        <option value={"IMAGE"}>Image</option>
                     </select>
                     <input
                         onChange={(e) => {

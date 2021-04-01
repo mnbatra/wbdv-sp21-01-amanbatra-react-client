@@ -1,4 +1,4 @@
-const COURSES_URL = "https://wbdv-generic-server.herokuapp.com/api/mnbatra/courses";
+const COURSES_URL = "http://ec2-3-133-235-23.us-east-2.compute.amazonaws.com:8080/api/mnbatra/courses";
 
 export const findAllCourses = () =>
     fetch(COURSES_URL)
