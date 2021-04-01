@@ -8,7 +8,6 @@ import topicReducer from "../../reducers/topic-reducer";
 import ListWidget from "./list-widget";
 import ImageWidget from "./image-widget";
 
-
 const WidgetList = ({
                         widgets = [],
                         setWidgetToEmpty,

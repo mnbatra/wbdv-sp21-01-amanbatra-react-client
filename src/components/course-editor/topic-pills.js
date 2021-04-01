@@ -55,6 +55,8 @@ const TopicPills = ({
                     <select className="form-control" aria-label="widget-dropdown">
                         <option>Heading</option>
                         <option>Paragraph</option>
+                        <option>List</option>
+                        <option>Image</option>
                     </select>
                 </div>
                 <button type="submit" className="btn btn-warning ml-2"><i className="fa fa-arrow-up"/></button>
