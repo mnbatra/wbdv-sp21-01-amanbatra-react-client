@@ -1,64 +1,77 @@
-import React, {useState} from 'react'
+import React, {useState} from "react"
 
-const ImageWidget = ({widget, editing}) => {
-
-    const [cachedWidget, setCachedWidget] = useState(widget)
-
+const ImageWidget = ({widget, editing,updateWidget,deleteWidget}) =>
+{
+    const [cachedWidget, setCachedWidget] =useState(widget)
+    const [isEditing,setIsEditing] = useState(false)
     return (
+
         <div>
-            {
-                editing &&
-                <div>
-                    URL
-                    <input
-                        onChange={(e) => {
-                            setCachedWidget({
-                                ...cachedWidget,
-                                imgSrc: e.target.value
-                            })
-                            widget.imgSrc = e.target.value
-                        }
-                        }
-                        value={widget.imgSrc}
-                        className="form-control"
-                    />
-                    width
-                    <input
-                        onChange={(e) => {
-                            setCachedWidget({
-                                ...cachedWidget,
-                                width: e.target.value
-                            })
-                            widget.width = e.target.value
-                        }
-                        }
-                        value={widget.width}
-                        className="form-control"
-                    />
-                    height
-                    <input
-                        onChange={(e) => {
-                            setCachedWidget({
-                                ...cachedWidget,
-                                height: e.target.value
-                            })
-                            widget.height = e.target.value
-                        }
-                        }
-                        value={widget.height}
-                        className="form-control"
-                    />
-                </div>
+            {!isEditing &&
+            <>
+                <i onClick={() => setIsEditing(true)} className="fas fa-2x fa-cog float-right"/>
+            </>
             }
             {
-                !editing &&
-                <img src={widget.imgSrc}
-                     width={widget.width}
+                !isEditing &&
+                <img width={widget.width}
                      height={widget.height}
-                     alt={"Link not found!"}
+                     src={widget.src}
+                     alt={"Link Missing"}
                 />
             }
+            {
+                isEditing &&
+                <>
+                    <>Image URL</>
+                    <input value={cachedWidget.src} onChange={
+                        (e) => setCachedWidget({
+                            ...cachedWidget,
+                            src: e.target.value
+                        })
+                    } className="form-control"/>
+                    <>Image Width</>
+                    <input value={cachedWidget.width} onChange={
+                        (e) => setCachedWidget({
+                            ...cachedWidget,
+                            width: e.target.value
+                        })
+                    } className="form-control"/>
+                    <>Image Height</>
+                    <input value={cachedWidget.height} onChange={
+                        (e) => setCachedWidget({
+                            ...cachedWidget,
+                            height: e.target.value
+                        })
+                    } className="form-control"/>
+                    <select value={cachedWidget.type}
+                            onChange={
+                                (e) => setCachedWidget({
+                                    ...cachedWidget,
+                                    type: e.target.value
+                                })
+                            }
+                            className="form-control">
+                        <option value={"PARAGRAPH"}>PARAGRAPH</option>
+                        <option value={"HEADING"}>HEADING</option>
+                        <option value={"IMAGE"}>IMAGE</option>
+                        <option value={"LIST"}>LIST</option>
+                    </select>
+                    <i onClick={() => {
+                            updateWidget(widget.id, cachedWidget)
+                            setIsEditing(false)
+
+                        }} className="fas fa-check float-right"/>
+                    <i onClick={() => {
+                            deleteWidget(widget.id)
+                            setIsEditing(false)
+                        }} className="fas fa-trash float-right"/>
+                </>
+            }
+            {/*{JSON.stringify(widget)}*/}
+
         </div>
     )
 }
+
 export default ImageWidget

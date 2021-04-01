@@ -1,90 +1,65 @@
-import React, {useEffect, useState} from "react";
-import {useParams} from "react-router";
-import {connect} from "react-redux";
-import ParagraphWidget from "./paragraph-widget";
+import React, {useState, useEffect} from 'react'
 import HeadingWidget from "./heading-widget";
-import widgetService from "../../services/widget-service"
-import topicReducer from "../../reducers/topic-reducer";
+import ParagraphWidget from "./paragraph-widget";
 import ListWidget from "./list-widget";
 import ImageWidget from "./image-widget";
+import widgetService from "../../services/widget-service";
+import {useParams} from "react-router-dom";
+import {connect} from "react-redux";
 
 const WidgetList = ({
-                        widgets = [],
+                        widgets,
                         setWidgetToEmpty,
-                        findWidgetsForTopic = (topicId) => console.log(topicId),
-                        findAllWidgets,
-                        createWidgetForTopic,
+                        findWidgetsForTopic,
                         updateWidget,
-                        deleteWidget
+                        deleteWidget,
+                        createWidgetForTopic
                     }) => {
-    const  {moduleId, lessonId, topicId} = useParams()
-    const [editingWidget, setEditingWidget] = useState({})
-
+    const {layout,courseId,moduleId, lessonId ,topicId} = useParams();
+    const [editingWidget] = useState({})
+    const [editing] = useState(false)
     useEffect(() => {
-        if (topicId != "undefined" && typeof topicId != "undefined"
-            && moduleId != "undefined" && typeof moduleId != "undefined"
-            && lessonId != "undefined" && typeof lessonId != "undefined"){
+        if (topicId != "undefined" && typeof topicId != "undefined" && moduleId != "undefined" && typeof moduleId != "undefined" && lessonId != "undefined" && typeof lessonId != "undefined") {
             findWidgetsForTopic(topicId)
         }
         else {
             setWidgetToEmpty();
         }
 
-    }, [topicId,lessonId, moduleId])
-
-
-    return (
-        <div className={"widget-list"}>
-            <button
-                onClick={() => createWidgetForTopic(topicId,lessonId,moduleId)}
-                className="widget-list-add editor-widget-list-btn fas fa-plus fa-2x float-right"
-            />
+    }, [topicId, lessonId, moduleId, findWidgetsForTopic, setWidgetToEmpty])
+    return(
+        <div>
+            <i onClick={() => createWidgetForTopic(topicId, lessonId, moduleId)} className="fas fa-plus fa-2x float-right text-danger"/>
+            <h2 className="text-white">Widget List ({widgets.length}
+                )</h2>
             <ul className="list-group">
                 {
                     widgets.map(widget =>
                         <li className="list-group-item" key={widget.id}>
                             {
-                                editingWidget.id === widget.id &&
-                                <>
-                                    <button
-                                        onClick={() => {
-                                            updateWidget(editingWidget)
-                                            setEditingWidget({})
-                                        }}
-                                        className="fas fa-check float-right"/>
-                                    <button
-                                        onClick={() => deleteWidget(editingWidget)}
-                                        className="fas fa-trash float-right "/>
-                                </>
-                            }
-                            {
-                                editingWidget.id !== widget.id &&
-                                <button onClick={() => setEditingWidget(widget)}
-                                        className="fas fa-cog float-right"/>
-                            }
-                            {
-                                widget.type === "HEADING" &&
-                                <HeadingWidget
-                                    editing={editingWidget.id === widget.id}
-                                    widget={widget}/>
-                            }
-                            {
-                                widget.type === "PARAGRAPH" &&
-                                <ParagraphWidget
-                                    editing={editingWidget.id === widget.id}
-                                    widget={widget}/>
-                            }
-                            {
                                 widget.type === "LIST" &&
                                 <ListWidget
                                     editing={editingWidget.id === widget.id}
-                                    widget={widget}/>
+                                    widget={widget} updateWidget={updateWidget} deleteWidget={deleteWidget}/>
                             }
                             {
                                 widget.type === "IMAGE" &&
                                 <ImageWidget
                                     editing={editingWidget.id === widget.id}
-                                    widget={widget}/>
+                                    widget={widget} updateWidget={updateWidget} deleteWidget={deleteWidget}/>
+                            }
+
+                            {
+                                widget.type === "HEADING" &&
+                                <HeadingWidget to={`/courses/${layout}/editor/${courseId}/modules/${moduleId}/lessons/${lessonId}/topics/${topicId}/widgets/${widget.id}`}
+                                               editing={editingWidget.id === widget.id}
+                                               widget={widget} updateWidget={updateWidget} deleteWidget={deleteWidget}/>
+                            }
+                            {
+                                widget.type === "PARAGRAPH" &&
+                                <ParagraphWidget
+                                    editing={editingWidget.id === widget.id}
+                                    widget={widget} updateWidget={updateWidget} deleteWidget={deleteWidget}/>
                             }
                         </li>
                     )
@@ -94,17 +69,39 @@ const WidgetList = ({
     )
 }
 
-const stpm = (state) => {
-    return {
-        widgets: state.widgetReducer.widgets
-    }
-}
+const stpm =(state) => ({
+    widgets: state.widgetReducer.widgets
+})
 
 const dtpm = (dispatch) => {
     return {
-        setWidgetToEmpty:() => dispatch({
-            type: "CLEAN_WIDGET"
-        }),
+        deleteWidget: (wid) => widgetService.deleteWidget(wid).then(
+            status => dispatch({
+                type: "DELETE_WIDGET",
+                wid: wid
+            })
+        ),
+        updateWidget: (wid, widget) => widgetService.updateWidget(wid, widget).then(
+            status => dispatch({
+                type: "UPDATE_WIDGET",
+                widget: widget
+            })
+        ),
+        createWidgetForTopic: (tid, lessonId, moduleId) => {
+            if (!(lessonId != "undefined" &&
+                typeof lessonId != "undefined" && moduleId != "undefined" && typeof moduleId != "undefined" && tid != "undefined" &&
+                typeof tid != "undefined") )
+            {
+                alert("Invalid operation. You have to select topic first!")
+            } else {
+                widgetService.createWidget(tid,{type: "HEADING", size: 1, text: "New Widget"}).then(
+                    theActualWidget => dispatch({
+                        type: "CREATE_WIDGET",
+                        widget: theActualWidget
+                    })
+                )
+            }
+        },
         findWidgetsForTopic: (topicId) => {
             widgetService.findWidgetsForTopic(topicId).then(
 
@@ -118,53 +115,9 @@ const dtpm = (dispatch) => {
                 }
             )
         },
-        findAllWidgets: () =>
-                widgetService.findAllWidgets()
-                .then(fetchedWidgets => dispatch({
-                    type: "FIND_ALL_WIDGETS",
-                    widgets: fetchedWidgets
-                })),
-        findWidget: (widgetId) =>
-            widgetService.findWidgetById()
-                .then(fetchedWidget => dispatch({
-                    type: "FIND_WIDGET",
-                    widget: fetchedWidget
-                })),
-
-        createWidgetForTopic: (topicId, lessonId, moduleId) => {
-            if (!(lessonId != "undefined" &&
-                typeof lessonId != "undefined" && moduleId != "undefined" && typeof moduleId != "undefined" && topicId != "undefined" &&
-                typeof topicId != "undefined") ) {
-                alert("Invalid operation. You have to select topic first!")
-            } else {
-                widgetService.createWidget(topicId, {
-                    type: "HEADING",
-                    size: 1,
-                    text: "New Widget"
-                })
-                    .then(createdWidget => dispatch({
-                        type: "CREATE_WIDGET",
-                        widget: createdWidget
-                    }))
-            }
-        },
-
-        updateWidget: (widget) => {
-            console.log("logging from update widget")
-            console.log(widget.id)
-            return widgetService.updateWidget(widget.id, widget)
-                .then(status => dispatch({
-                    type: "UPDATE_WIDGET",
-                    widget
-
-                }))
-        },
-        deleteWidget: (widget) =>
-            widgetService.deleteWidget(widget.id)
-                .then(status => dispatch({
-                    type: "DELETE_WIDGET",
-                    widgetToDelete: widget
-                }))
+        setWidgetToEmpty: () => dispatch({
+            type: "CLEAN_WIDGET"
+        })
     }
 }
 

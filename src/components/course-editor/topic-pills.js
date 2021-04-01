@@ -49,19 +49,7 @@ const TopicPills = ({
                 <a href="#"><i className="fa fa-toggle-on fa-2x"/></a>
             </div>
 
-            <form className="form-inline my-3">
-                <span className="font-weight-bold h3">Widgets</span>
-                <div className="form-group ml-auto">
-                    <select className="form-control" aria-label="widget-dropdown">
-                        <option>Heading</option>
-                        <option>Paragraph</option>
-                        <option>List</option>
-                        <option>Image</option>
-                    </select>
-                </div>
-                <button type="submit" className="btn btn-warning ml-2"><i className="fa fa-arrow-up"/></button>
-                <button type="submit" className="btn btn-warning ml-2"><i className="fa fa-arrow-down"/></button>
-            </form>
+<br/>
         </div>
 
     )
@@ -92,7 +80,7 @@ const dtpm = (dispatch) => {
                 && moduleId != "undefined"
                 && typeof moduleId != "undefined"))
                 {
-                    alert("Please select a lesson first to add the topic to")
+                    alert("Select a lesson first")
                 }
             else {topicService.createTopicForLesson(lessonId, {title: "New Topic"})
                 .then(theActualTopic => dispatch({
