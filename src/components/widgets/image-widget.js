@@ -14,12 +14,12 @@ const ImageWidget = ({widget, editing}) => {
                         onChange={(e) => {
                             setCachedWidget({
                                 ...cachedWidget,
-                                url: e.target.value
+                                imgSrc: e.target.value
                             })
-                            widget.url = e.target.value
+                            widget.imgSrc = e.target.value
                         }
                         }
-                        value={widget.url}
+                        value={widget.imgSrc}
                         className="form-control"
                     />
                     width
@@ -52,7 +52,7 @@ const ImageWidget = ({widget, editing}) => {
             }
             {
                 !editing &&
-                <img src={widget.url}
+                <img src={widget.imgSrc}
                      width={widget.width}
                      height={widget.height}
                      alt={"Link not found!"}
