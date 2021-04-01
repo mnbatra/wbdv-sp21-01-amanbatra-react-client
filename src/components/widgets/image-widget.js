@@ -55,7 +55,7 @@ const ImageWidget = ({widget, editing}) => {
                 <img src={widget.url}
                      width={widget.width}
                      height={widget.height}
-                     alt={"Image not found!"}
+                     alt={"Link not found!"}
                 />
             }
         </div>
