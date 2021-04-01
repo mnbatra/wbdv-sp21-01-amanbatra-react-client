@@ -1,9 +1,8 @@
 import React, {useState} from "react"
 
-const ImageWidget = ({widget, editing,updateWidget,deleteWidget}) =>
-{
-    const [cachedWidget, setCachedWidget] =useState(widget)
-    const [isEditing,setIsEditing] = useState(false)
+const ImageWidget = ({widget, editing,updateWidget,deleteWidget}) => {
+    const [cachedWidget, setCachedWidget] = useState(widget)
+    const [isEditing, setIsEditing] = useState(false)
     return (
 
         <div>
@@ -58,14 +57,17 @@ const ImageWidget = ({widget, editing,updateWidget,deleteWidget}) =>
                         <option value={"LIST"}>LIST</option>
                     </select>
                     <i onClick={() => {
+                        if (widget.src!=="" || cachedWidget.src !=="") {
                             updateWidget(widget.id, cachedWidget)
                             setIsEditing(false)
-
-                        }} className="fas fa-check float-right"/>
+                        } else {
+                            alert("Need to specify Image URL!!!")
+                        }
+                    }} className="fas fa-check float-right"/>
                     <i onClick={() => {
-                            deleteWidget(widget.id)
-                            setIsEditing(false)
-                        }} className="fas fa-trash float-right"/>
+                        deleteWidget(widget.id)
+                        setIsEditing(false)
+                    }} className="fas fa-trash float-right"/>
                 </>
             }
             {/*{JSON.stringify(widget)}*/}
@@ -73,5 +75,4 @@ const ImageWidget = ({widget, editing,updateWidget,deleteWidget}) =>
         </div>
     )
 }
-
 export default ImageWidget
