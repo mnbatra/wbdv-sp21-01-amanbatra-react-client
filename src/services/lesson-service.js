@@ -1,5 +1,5 @@
-const LESSONS_URL = "http://ec2-3-133-235-23.us-east-2.compute.amazonaws.com:8080/api/mnbatra/lessons";
-const MODULES_URL = "http://ec2-3-133-235-23.us-east-2.compute.amazonaws.com:8080/api/mnbatra/modules";
+const LESSONS_URL = "https://wbdv-generic-server.herokuapp.com/api/mnbatra/lessons";
+const MODULES_URL = "https://wbdv-generic-server.herokuapp.com/api/mnbatra/modules";
 
 export const createLessonForModule = (moduleId, lesson) =>
     fetch(`${MODULES_URL}/${moduleId}/lessons`, {
