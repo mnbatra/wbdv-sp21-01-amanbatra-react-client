@@ -20,6 +20,7 @@ export default class CourseTable
                         <th>Title</th>
                         <th className="d-none d-sm-table-cell">Owned By</th>
                         <th className="d-none d-sm-none d-md-none d-lg-table-cell">Last Modified</th>
+                        <th className="d-none d-lg-table-cell position-sticky wbdv-table-headers">Quizzes</th>
                         <th>
                     <span className="float-right">
                     <i className="fas fa-2x fa-folder ml-2"/>
