@@ -12,8 +12,9 @@ const Quizzes = () => {
     return (
         <div>
             <div className='row'>
-                <Link to='/courses/table' className='fas fa-times'/>
-                <h1>Quizzes</h1>
+                <Link to='/courses/table' className='fas fa-2x fa-times ml-1'/>
+                <h1><br/>
+                    Quizzes</h1>
             </div>
             <ul className='list-group'>
                 {
