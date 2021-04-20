@@ -1,37 +1,60 @@
-import React, {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
-import Question from "./question/question";
-import questionService from "../../services/question-service";
-import quizService from "../../services/quizzes-service";
+import React, {useState, useEffect} from 'react';
+import {Link, useParams} from 'react-router-dom';
+import QuestionService from '../../services/question-service';
+import QuizService from '../../services/quizzes-service';
+import Question from '../quizzes/question/question';
 
 const Quiz = () => {
     const {courseId, quizId} = useParams();
-    const [questions, setQuestions] = useState([]);
     const [quiz, setQuiz] = useState({});
+    const [questions, setQuestions] = useState([]);
+    const [graded, setGraded] = useState(false)
+    const [attempt, setAttempt] = useState({})
     useEffect(() => {
-
-        // TODO: move this to a service file
-
-        questionService.findQuestionsForQuiz(quizId)
-            .then(questions => setQuestions(questions));
-        quizService.findQuizById(quizId)
-            .then(quiz => setQuiz(quiz));
-    }, [quizId])
-
+        QuizService.findQuizById(quizId)
+            .then(res => setQuiz(res));
+        QuestionService.findQuestionsForQuiz(quizId)
+            .then(res => setQuestions(res));
+        if (graded) {
+            QuizService.submitQuiz(quiz._id, questions).then(res => setAttempt(res));
+        }
+    }, [quizId, graded])
     return (
-        <div className="container-fluid">
-            <h2>{quiz.title}</h2>
-            <ul>
+        <div>
+            <div className='row'>
+                <Link to={"/courses/table"} className='fa fa-arrow-alt-circle-left mt-2'> Go back &nbsp; </Link>
+                <h3><br/>Quiz No:  {quizId} &nbsp;&nbsp;&nbsp; Total Questions: {questions.length} <br/><br/> </h3>
+            </div>
+            {graded && <Link className='btn btn-secondary'
+                             to={`/courses/${courseId}/quizzes/${quizId}/attempts`}>See attempts</Link>}
+            {
+                questions.map(question =>
+                    <div key={question._id}>
+                        <Question question={question} questions={questions} setQuestions={setQuestions}
+                                  graded={graded}/>
+                    </div>
+                )
+            }
+            <div>
+                <button onClick={() => setGraded(true)}
+                        className='btn btn-success'
+                        disabled={graded}>
+                    Submit
+                </button>
                 {
-                    questions.map(question =>
-                        <div key={question._id}>
-                            <Question question={question}/>
-                        </div>
-                    )
+                    graded &&
+                    <div>
+
+                        <h2>Submitted Score: {attempt.score}</h2>
+                        <h2>
+                            Submitted Id: {attempt._id}
+                        </h2>
+                    </div>
                 }
-            </ul>
+            </div>
         </div>
-    );
+
+    )
 }
 
 export default Quiz

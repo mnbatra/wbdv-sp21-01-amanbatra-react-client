@@ -1,60 +1,52 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from 'react';
 
-const MultipleChoiceQuestion = ({question}) => {
-    const [answer, setAnswer] = useState("");
-    const [btn, setBtn] = useState(false);
+const MultipleChoiceQuestion = ({graded,question, questions, setQuestions}) => {
+    const [answer, setAnswer] = useState('');
+    const choices = question.choices;
+    const rightChoice = answer === question.correct && graded;
+    const wrongChoice = graded && answer !== question.correct && graded;
+    let count = 0;
+    useEffect(() => {
+        if (graded) {
+            const unrelated = questions.filter(q => q._id !== question._id);
+            const target = questions.find(q => q._id === question._id);
+            target.answer = answer;
+            const updatedQuestions = [...unrelated, target];
+            setQuestions(updatedQuestions);
+        }
+    }, [graded])
     return (
         <div>
-            <h4>
-                {question.question}
+            <h4>{question.question}
+                {rightChoice && <i className="fas fa-check float-right" style={{color: '#5ab83b'}}/>}
+                {wrongChoice && <i className="fas fa-times float-right" style={{color: '#d9161d'}}/>}</h4>
+            <ul className='list-group'>
                 {
-                    btn && question.correct === answer && <i className="fas fa-check text-success"></i>
-                }
-                {
-                    btn && question.correct !== answer && <i className="fas fa-times text-danger"></i>
-                }
-            </h4>
-            <ul className="list-group">
-                {
-                    question.choices.map((choice) => {
-                        return (
-                            <li className={`list-group-item
-                            ${btn && choice === question.correct ? "list-group-item-success" : ""}
-                            ${btn && answer !== question.correct && answer === choice ?
-                                "list-group-item-danger" : ""}`}>
-                                <label>
-                                    <input
-                                        onChange={(event) => {
-                                            setAnswer(event.target.value)
-                                        }}
-                                        type="radio"
-                                        name={question._id}
-                                        value={choice}
-                                        disabled={btn}
-                                    />
-                                    {choice}
-                                </label>
-                                {
-                                    btn && choice === question.correct &&
-                                    <i className="fas fa-check text-success float-right"/>
-                                }
-                                {
-                                    btn && answer !== question.correct && answer === choice &&
-                                    <i className="fas fa-times text-danger float-right"/>
-                                }
-                            </li>
-                        )
+                    choices.map(choice => {
+                        const ra =  question.correct === choice && graded;
+                        const swa = graded && question.correct !== answer && answer === choice;
+                        return (<li className={`list-group-item ${ra ? 'list-group-item-success' : ''} ${swa ? 'list-group-item-danger' : ''}`} key={count++}>
+                            <label>
+                                <input type='radio'
+                                       checked={answer === choice}
+                                       disabled={graded}
+                                       value={choice}
+                                       onChange={e => setAnswer(e.target.value)}/>
+                                {choice}
+                            </label>
+                            {
+                                ra && <i className="fas fa-check float-right" style={{color: '#5ab83b'}}/>
+                            }
+                            {
+                                swa && <i className="fas fa-times float-right" style={{color: '#d9161d'}}/>
+                            }
+                        </li>)
                     })
                 }
             </ul>
-            <br/>
-            <h6>Your answer: {answer}</h6>
-            <br/>
-            <button onClick={() => setBtn(true)} className="btn btn-success" disabled={btn}>
-                Grade
-            </button>
+            <p>Your Answer: {answer}</p>
         </div>
-    )
+    );
 }
 
 export default MultipleChoiceQuestion;

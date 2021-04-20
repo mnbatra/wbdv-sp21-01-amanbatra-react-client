@@ -7,6 +7,7 @@ import React from "react";
 import CourseEditor from "./components/course-editor/course-editor";
 import Quizzes from "./components/quizzes/quizzes-list";
 import Quiz from "./components/quizzes/quiz";
+import QuizAttempts from "./components/quizzes/quiz-attempts";
 
 function App() {
     return (
@@ -25,6 +26,9 @@ function App() {
                     </Route>
                     <Route path='/courses/:courseId/quizzes/:quizId' exact={true}>
                         <Quiz/>
+                    </Route>
+                    <Route path='/courses/:courseId/quizzes/:quizId/attempts' exact={true}>
+                        <QuizAttempts/>
                     </Route>
                     <Route path="/courses" component={CourseManager}/>
                 </Switch>

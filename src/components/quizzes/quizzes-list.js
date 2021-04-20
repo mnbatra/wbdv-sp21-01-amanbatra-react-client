@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Link, useParams} from "react-router-dom";
+import CourseRow from "../course-table/course-row";
 import quizzesService from "../../services/quizzes-service";
 
 
@@ -25,7 +26,7 @@ const QuizzesList = () => {
                                 <li className="list-group-item" key={quiz._id}>
                                     <Link to={`/courses/${courseId}/quizzes/${quiz._id}`}>{quiz.title}</Link>
                                     <Link to={`/courses/${courseId}/quizzes/${quiz._id}`}
-                                          className="btn btn-primary float-right">
+                                          className="btn btn-primary float-right ml-1">
                                         Start
                                     </Link>
                                 </li>

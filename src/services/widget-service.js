@@ -1,5 +1,4 @@
 import React from "react";
-//const TOPIC_URL = "http://ec2-3-133-235-23.us-east-2.compute.amazonaws.com:8080/api/topics";
 const WIDGET_URL = "http://localhost:8080/api"; //my personal server for mysql on aws
 
 export const findAllWidgets = () => {}
