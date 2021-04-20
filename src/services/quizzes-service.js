@@ -1,4 +1,4 @@
-const QUIZZES_URL = 'https://mnbatra.herokuapp.com/api/quizzes';
+const QUIZZES_URL = 'mnbatra.herokuapp.com/api/quizzes';
 
 export const findAllQuizzes = () =>
     fetch(QUIZZES_URL)
