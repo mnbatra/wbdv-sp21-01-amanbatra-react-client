@@ -5,7 +5,7 @@ import Home from "./components/home"
 //import CourseHeader from "./components/course-navbar";
 import React from "react";
 import CourseEditor from "./components/course-editor/course-editor";
-import Quizzes from "./components/quizzes/quizzes-list";
+import Quizzes from "./components/quizzes/quizzes";
 import Quiz from "./components/quizzes/quiz";
 import QuizAttempts from "./components/quizzes/quiz-attempts";
 
